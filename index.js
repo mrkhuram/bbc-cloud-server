@@ -1,44 +1,30 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+let express = require("express");
+let app = express();
+let bodyParser = require("body-parser");
+let cors = require("cors");
 
-const app = express();
+// mongo db connection
+require("./config/db");
 
-/* configure body-parser */
+// environmental variable config
+require("dotenv").config({ debug: true });
+
+app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-const {
-  auth_route,
-  user_route,
-  product_route,
-  cart_route,
-  order_route,
-} = require("./routes");
+// Uploading files config
 
-app.use("/api/v1/auth", auth_route);
-app.use("/api/v1/users", user_route);
-app.use("/api/v1/products", product_route);
-app.use("/api/v1/carts", cart_route);
-app.use("/api/v1/orders", order_route);
 
-const dbConfig = require("./config/database-config");
+app.get("/", (req, res) => {
+  res.send("Welcome");
+});
 
-/* connecting to the database */
-mongoose
-  .connect(dbConfig.URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Successfully connected to the database");
-  })
-  .catch((err) => {
-    console.log("Could not connect to the database. Exiting now...", err);
-    process.exit();
-  });
+app.use("/api", require("./routes/auth"));
+app.use("/api", require("./routes/tour"));
+app.use("/api", require("./routes/news"));
+app.use("/api", require("./routes/videos"));
+app.use("/api", require("./routes/music"));
 
-/* listen for requests */
-app.listen(3000, () => {
-  console.log("Server is listening on port 3000");
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening at http://localhost:${process.env.PORT}`);
 });
