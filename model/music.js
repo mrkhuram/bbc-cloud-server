@@ -10,7 +10,11 @@ let News = new mongoose.Schema(
       type: String,
       required: true,
     },
-    music_link: {
+    music_short_file: {
+      type: String,
+      required: true,
+    },
+    music_full_file: {
       type: String,
       required: true,
     },
