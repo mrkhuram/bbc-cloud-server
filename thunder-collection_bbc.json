@@ -1,0 +1,393 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "bbc",
+    "dateExported": "2023-08-02T17:10:23.224Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "ac01d56a-a5de-412f-bbdc-8bb18f718e72",
+            "name": "Tour",
+            "containerId": "",
+            "created": "2023-07-25T14:34:02.219Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "0383667d-701e-44b5-88b5-b31ed4f467e4",
+            "name": "News",
+            "containerId": "",
+            "created": "2023-07-25T16:54:29.749Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "864d3659-9b60-4206-98a5-b34609a14b0d",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "",
+            "name": "Register",
+            "url": "http://localhost:5000/api/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-07-25T12:49:18.029Z",
+            "modified": "2023-07-25T12:49:18.029Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"testing@gmail.com\",\n  \"password\": \"123456789\",\n  \"fisrtName\": \"User\",\n  \"lastName\": \"One\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f480ad4c-a411-40db-b348-0921ea0eae5e",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "ac01d56a-a5de-412f-bbdc-8bb18f718e72",
+            "name": "Create Tour",
+            "url": "http://localhost:5000/api/tour/create",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-07-25T14:30:02.699Z",
+            "modified": "2023-07-25T14:30:02.699Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"Title of tour 4\",\n  \"city\": \"Faisalabad\",\n  \"state\": \"Punjab\",\n  \"ticket_link\": \"https://google.com/\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "3c814877-d658-41ee-821a-9c5f1a603ef6",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "",
+            "name": "Login",
+            "url": "http://localhost:5000/api/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-07-25T12:50:57.997Z",
+            "modified": "2023-07-25T12:50:57.997Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"testing@gmail.com\",\n  \"password\": \"123456789\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7fbad411-423d-4ebc-b874-84f2d407a67e",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "ac01d56a-a5de-412f-bbdc-8bb18f718e72",
+            "name": "Get all Tour",
+            "url": "http://localhost:5000/api/tour/read_all",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-07-25T14:30:44.000Z",
+            "modified": "2023-07-25T14:37:05.304Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"Title of tour 4\",\n  \"city\": \"Faisalabad\",\n  \"state\": \"Punjab\",\n  \"ticket_link\": \"https://google.com/\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1d270482-1525-4910-b5ff-07c949b72f9b",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "ac01d56a-a5de-412f-bbdc-8bb18f718e72",
+            "name": "Get one tour by ID",
+            "url": "http://localhost:5000/api/tour/read/64bfdc36f709ead3898f7a1e",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-07-25T14:33:33.502Z",
+            "modified": "2023-07-25T14:33:33.502Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"Title of tour 4\",\n  \"city\": \"Faisalabad\",\n  \"state\": \"Punjab\",\n  \"ticket_link\": \"https://google.com/\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "0ec0dd7c-ef32-433c-8cc4-deeb1f535104",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "ac01d56a-a5de-412f-bbdc-8bb18f718e72",
+            "name": "Update one tour by id",
+            "url": "http://localhost:5000/api/tour/update/64bfdc36f709ead3898f7a1e",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-07-25T14:36:06.717Z",
+            "modified": "2023-07-25T14:36:06.717Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"Title of tour 2 to 5\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "68fcb0e5-fdc2-4fb2-ba5b-e567816e29fc",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "ac01d56a-a5de-412f-bbdc-8bb18f718e72",
+            "name": "Delete Many",
+            "url": "http://localhost:5000/api/tour/delete_many",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-07-25T14:41:11.773Z",
+            "modified": "2023-07-25T14:41:11.773Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tourIds\": [\"64bfdc2af709ead3898f7a1c\"]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "02bba7c0-716c-46c2-a8be-473cb9d2a08f",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "ac01d56a-a5de-412f-bbdc-8bb18f718e72",
+            "name": "Deleting Tour by id",
+            "url": "http://localhost:5000/api/tour/delete/64bfdc2af709ead3898f7a1c",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-07-25T14:54:16.343Z",
+            "modified": "2023-07-25T14:54:16.343Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tourIds\": [\"64bfdc2af709ead3898f7a1c\"]\n}   ",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "95f73a33-c536-424d-8147-4e1a2cdb459b",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "0383667d-701e-44b5-88b5-b31ed4f467e4",
+            "name": "Create News",
+            "url": "http://localhost:5000/api/news/create",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-07-25T16:54:52.020Z",
+            "modified": "2023-07-25T17:02:32.865Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "title",
+                        "value": "news 7"
+                    },
+                    {
+                        "name": "description",
+                        "value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                    },
+                    {
+                        "name": "date",
+                        "value": "June 05, 2023"
+                    }
+                ],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "c:\\Users\\Leo\\Downloads\\WhatsApp Image 2022-10-28 at 11.44.42 PM.jpeg"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "e718fd32-c892-4c40-bf9f-10b950c43222",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "0383667d-701e-44b5-88b5-b31ed4f467e4",
+            "name": "Update news",
+            "url": "http://localhost:5000/api/news/update/64bffdfe8c55c065e49ee75f",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-07-25T17:00:56.944Z",
+            "modified": "2023-07-25T17:00:56.944Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "title",
+                        "value": "news 1 to 2"
+                    },
+                    {
+                        "name": "description",
+                        "value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        "isDisabled": true
+                    },
+                    {
+                        "name": "date",
+                        "value": "June 05, 2023",
+                        "isDisabled": true
+                    }
+                ],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "c:\\Users\\Leo\\Downloads\\WhatsApp Image 2022-10-28 at 11.44.42 PM.jpeg"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "ef613ea2-4ffc-4471-9f02-6730f3772e9c",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "0383667d-701e-44b5-88b5-b31ed4f467e4",
+            "name": "Deleting News",
+            "url": "http://localhost:5000/api/news/delete/64bffff58c55c065e49ee768",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2023-07-25T17:02:13.927Z",
+            "modified": "2023-07-25T17:02:13.927Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "title",
+                        "value": "news 1 to 2"
+                    },
+                    {
+                        "name": "description",
+                        "value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        "isDisabled": true
+                    },
+                    {
+                        "name": "date",
+                        "value": "June 05, 2023",
+                        "isDisabled": true
+                    }
+                ],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "c:\\Users\\Leo\\Downloads\\WhatsApp Image 2022-10-28 at 11.44.42 PM.jpeg"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "7779f3bd-6c03-41db-a5c2-f52bda7990c2",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "0383667d-701e-44b5-88b5-b31ed4f467e4",
+            "name": "Get News By ID",
+            "url": "http://localhost:5000/api/news/read/64c000288c55c065e49ee76b",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2023-07-25T17:02:58.091Z",
+            "modified": "2023-07-25T17:02:58.091Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "title",
+                        "value": "news 1 to 2"
+                    },
+                    {
+                        "name": "description",
+                        "value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        "isDisabled": true
+                    },
+                    {
+                        "name": "date",
+                        "value": "June 05, 2023",
+                        "isDisabled": true
+                    }
+                ],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "c:\\Users\\Leo\\Downloads\\WhatsApp Image 2022-10-28 at 11.44.42 PM.jpeg"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "7212233c-8d20-4dce-891f-4f527a5a5e39",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "0383667d-701e-44b5-88b5-b31ed4f467e4",
+            "name": "Get all News",
+            "url": "http://localhost:5000/api/news/read_all",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2023-07-25T17:03:26.279Z",
+            "modified": "2023-07-25T17:03:26.279Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "title",
+                        "value": "news 1 to 2"
+                    },
+                    {
+                        "name": "description",
+                        "value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        "isDisabled": true
+                    },
+                    {
+                        "name": "date",
+                        "value": "June 05, 2023",
+                        "isDisabled": true
+                    }
+                ],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "c:\\Users\\Leo\\Downloads\\WhatsApp Image 2022-10-28 at 11.44.42 PM.jpeg"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "45429305-a77a-4ee3-b611-c7b887a7b4e8",
+            "colId": "c86806c0-fa1c-4dbc-935b-4b8548874d26",
+            "containerId": "0383667d-701e-44b5-88b5-b31ed4f467e4",
+            "name": "Delete Many",
+            "url": "http://localhost:5000/api/news/delete_many",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2023-07-25T17:04:50.250Z",
+            "modified": "2023-07-25T17:04:50.250Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"NewsIds\": [\"64bfdc2af709ead3898f7a1c\"]\n}   ",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
