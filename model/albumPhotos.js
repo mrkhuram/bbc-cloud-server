@@ -1,6 +1,6 @@
 let mongoose = require("mongoose");
 
-let Album = new mongoose.Schema(
+let AlbumPhoto = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -16,4 +16,4 @@ let Album = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Album", Album);
+module.exports = mongoose.model("AlbumPhoto", AlbumPhoto);

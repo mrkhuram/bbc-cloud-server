@@ -1,6 +1,6 @@
 let mongoose = require("mongoose");
 
-let News = new mongoose.Schema(
+let Music = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -28,4 +28,4 @@ let News = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("News", News);
+module.exports = mongoose.model("Music", Music);
