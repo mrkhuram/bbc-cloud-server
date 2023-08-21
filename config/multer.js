@@ -5,9 +5,9 @@ const storage = multer.diskStorage({
     cb(null, "public/uploads");
   },
   filename: (req, file, cb) => {
-    console.log(file);
+
     let filename = file.originalname.split(".");
-    cb(null, Date.now() + "."+filename[filename.length - 1]);
+    cb(null, Date.now() + "." + filename[filename.length - 1]);
   },
 });
 
@@ -15,7 +15,9 @@ const fileFilter = (req, file, cb) => {
   if (
     file.mimetype == "image/jpeg" ||
     file.mimetype == "image/png" ||
-    file.mimetype == "image/jpg"
+    file.mimetype == "image/jpg" ||
+    file.mimetype == "audio/mpeg" ||
+    file.mimetype == "audio/mp3"
   ) {
     cb(null, true);
   } else {

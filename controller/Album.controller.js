@@ -4,12 +4,19 @@ class AlbumController {
   Create = async (req, res) => {
     try {
       let body = Object.assign({}, req.body);
-      
+
       if (!body.title)
         return res.status(403).send({ message: "Title is required" });
-      if (req.files.length < 0)
+      if (req.files.title_img.length < 0)
         return res.status(403).send({ message: "Image is required" });
-      body.title_img = req.files[0].filename;
+      body.title_img = req.files.title_img[0].filename;
+      if (req.files.album_photos.length < 0)
+        return res.status(403).send({ message: "Album photos are required" });
+      let arr = [];
+      req.files.album_photos.forEach((element) => {
+        arr.push({ album_image: element.filename });
+      });
+      body.album_photos = arr;
 
       const newAlbum = new Album({ ...body });
 
@@ -25,6 +32,59 @@ class AlbumController {
       success: false,
       message: "Something went wrong in Album creating",
     });
+  };
+  AddPhotoToAlbum = async (req, res) => {
+    try {
+      let body = Object.assign({}, req.body);
+
+      if (!body.albumId)
+        return res.status(403).send({ message: "Album Id is required" });
+      if (req.files.length < 0)
+        return res.status(403).send({ message: "Album photos are required" });
+      let file = { album_image: req.files[0].filename };
+      const album = await Album.findByIdAndUpdate(
+        { _id: body.albumId },
+        { $push: { album_photos: file } }
+      );
+      if (!album)
+        return res
+          .status(403)
+          .send({ success: false, message: "Album saving failed." });
+
+      return res.status(200).send({ success: true, Album: album });
+    } catch (error) {}
+    return res.status(401).send({
+      success: false,
+      message: "Something went wrong in Album creating",
+    });
+  };
+  RemoveAnImageFromAlbum = async (req, res) => {
+    try {
+      let body = Object.assign({}, req.body);
+
+      if (!body.albumId)
+        return res.status(403).send({ message: "Album Id is required" });
+      if (!body.image_id)
+        return res.status(403).send({ message: "Image id are required" });
+
+      let album = await Album.findOneAndUpdate(
+        { _id: body.albumId },
+        { $pull: { album_photos: { _id: body.image_id } } },
+        { safe: true, multi: true }
+      );
+      if (!album)
+        return res
+          .status(403)
+          .send({ success: false, message: "Album saving failed." });
+
+      return res.status(200).send({ success: true, Album: album });
+    } catch (error) {
+      console.log(error)
+      return res.status(401).send({
+        success: false,
+        message: "Something went wrong in Album creating",
+      });
+    }
   };
   Update = async (req, res) => {
     try {

@@ -1,18 +1,25 @@
+const SplitAudio = require("../config/mp3Cutter");
 let Music = require("../model/music");
 
 class MusicController {
   Create = async (req, res) => {
     try {
       let body = Object.assign({}, req.body);
-      
+
       if (!body.title)
         return res.status(403).send({ message: "Title is required" });
       if (!body.releaseDate)
         return res.status(403).send({ message: "Date is required" });
-      if (req.files.length < 0)
+      if (req.files.music_image.length < 0)
         return res.status(403).send({ message: "Image is required" });
-      body.music_image = req.files[0].filename;
+      body.music_image = req.files.music_image[0].filename;
+      if (req.files.music_full_file.length < 0)
+        return res.status(403).send({ message: "Music file is required" });
+      body.music_full_file = req.files.music_full_file[0].filename;
 
+      let music_short_file = await SplitAudio(body.music_full_file)
+      body.music_short_file = music_short_file
+      
       const newMusic = new Music({ ...body });
 
       let result = await newMusic.save();

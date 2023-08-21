@@ -12,7 +12,7 @@ let Music = new mongoose.Schema(
     },
     music_short_file: {
       type: String,
-      required: true,
+      required: false,
     },
     music_full_file: {
       type: String,

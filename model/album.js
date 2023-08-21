@@ -10,6 +10,10 @@ let Album = new mongoose.Schema(
       type: String,
       required: true,
     },
+    album_photos: {
+      type: [{ album_image: { type: String } }],
+      required: true,
+    },
   },
   {
     timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
