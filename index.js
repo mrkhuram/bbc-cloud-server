@@ -41,8 +41,8 @@ app.get("/api/pay/:id", async (req, res) => {
       payment_method: "paypal",
     },
     redirect_urls: {
-      return_url: "http://16.171.254.234:5000/success/" + result._id,
-      cancel_url: "http://16.171.254.234:5000/cancel/" + result._id,
+      return_url: "http://16.171.254.234:5000/success_backend/" + result._id,
+      cancel_url: "http://16.171.254.234:5000/cancel_backend/" + result._id,
     },
     transactions: [
       {
@@ -78,7 +78,7 @@ app.get("/api/pay/:id", async (req, res) => {
     }
   });
 });
-app.get("/success/:id", async (req, res) => {
+app.get("/success_backend/:id", async (req, res) => {
   let Id = req.params.id;
 
   if (!Id) return res.status(403).send({ message: "ID param is required" });
@@ -110,12 +110,12 @@ app.get("/success/:id", async (req, res) => {
         let quantity = result.quantity - 1;
         let updated = await store.findByIdAndUpdate(Id , { quantity });
         console.log(updated)
-         res.redirect(301,`http://16.171.254.234/success`)
+         res.redirect(301,`http://16.171.254.234:5000/success`)
       }
     }
   );
 });
-app.get("/cancel/:id", (req, res) =>  res.redirect(301,`http://16.171.254.234/decline`));
+app.get("/cancel_backend/:id", (req, res) =>  res.redirect(301,`http://16.171.254.234:5000/decline`));
 
 app.use(express.static('./build'))
 
