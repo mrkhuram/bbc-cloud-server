@@ -18,7 +18,7 @@ class AuthController {
       if (isExist)
         return res.status(403).send({ message: "Email already exist." });
 
-      const newUser = new User({...body});
+      const newUser = new User({ ...body });
 
       let salt = await bcrypt.genSalt(10);
       let hash = await bcrypt.hash(body.password, salt);
@@ -35,8 +35,10 @@ class AuthController {
           .send({ success: false, message: "User Registration failed." });
 
       return res.status(200).send({ success: true, user: result });
-    } catch (error) {
-    }      return res.status(401).send({ success: false,message: 'Something went wrong in Register' });
+    } catch (error) {}
+    return res
+      .status(401)
+      .send({ success: false, message: "Something went wrong in Register" });
   };
   Login = async (req, res) => {
     try {
@@ -72,10 +74,27 @@ class AuthController {
           return res
             .status(200)
             .send({ success: true, token: token, user: isExist });
-        }
-      );
+          }
+          );
+        } catch (error) {
+      return res
+        .status(401)
+        .send({ success: false, message: "Something went wrong in Login" });
+      }
+    };
+    getProfile = async (req, res) => {
+      try {
+        let userID = req.params.id;
+
+        // Check user if already exist
+        let user = await User.findOne({ _id: userID }).populate("myMusic.music_item");
+
+        return res.status(200).send({ success: true, user });
+              
     } catch (error) {
-          return res.status(401).send({ success: false,message: 'Something went wrong in Login' });
+      return res
+        .status(401)
+        .send({ success: false, message: "Something went wrong in Login" });
     }
   };
 }

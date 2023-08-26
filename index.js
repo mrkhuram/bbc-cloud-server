@@ -118,7 +118,7 @@ app.get("/success_backend/:id", async (req, res) => {
         }
         if (query.music) {
           let userDetail = await user.findByIdAndUpdate(query.userID, {
-            $push: { myMusic: { music_item: Id } },
+            $push: { myMusic:  {music_item:Id}  },
           });
           
         }
