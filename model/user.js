@@ -22,6 +22,14 @@ let User = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    myMusic: {
+      type: [
+        {
+          music_item: { type: String, required: false },
+        },
+      ],
+      required: false,
+    },
   },
   {
     timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },

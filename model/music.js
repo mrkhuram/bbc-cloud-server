@@ -21,6 +21,10 @@ let Music = new mongoose.Schema(
     releaseDate:{
       type: String,
       required: true,
+    },
+    price:{
+      type: String,
+      required: true,
     }
   },
   {

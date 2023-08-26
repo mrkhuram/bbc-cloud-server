@@ -4,6 +4,7 @@ let bodyParser = require("body-parser");
 let cors = require("cors");
 const store = require("./model/store");
 let paypal = require("./config/paypal");
+const user = require("./model/user");
 
 // mongo db connection
 require("./config/db");
@@ -16,7 +17,6 @@ app.use(bodyParser.json());
 
 // Fetching files config
 app.use(express.static("public"));
-
 
 app.use("/api", require("./routes/auth"));
 app.use("/api", require("./routes/tour"));
@@ -32,7 +32,7 @@ app.get("/api/pay/:id", async (req, res) => {
   if (!Id) return res.status(403).send({ message: "ID param is required" });
 
   let result = await store.findById(Id);
-  if(result.quantity == 0){
+  if (result.quantity == 0) {
     return res.status(403).send({ message: "Out Of stock" });
   }
   const create_payment_json = {
@@ -41,7 +41,7 @@ app.get("/api/pay/:id", async (req, res) => {
       payment_method: "paypal",
     },
     redirect_urls: {
-      return_url: "http://16.171.254.234:5000/success_backend/" + result._id,
+      return_url: `http://16.171.254.234:5000/success_backend/${result._id}?price=${result.price}&product=yes&currency=USD`,
       cancel_url: "http://16.171.254.234:5000/cancel_backend/" + result._id,
     },
     transactions: [
@@ -80,10 +80,14 @@ app.get("/api/pay/:id", async (req, res) => {
 });
 app.get("/success_backend/:id", async (req, res) => {
   let Id = req.params.id;
+  console.log(req.query);
+  let query = req.query;
 
   if (!Id) return res.status(403).send({ message: "ID param is required" });
-
-  let result = await store.findById(Id);
+  let result = {};
+  if (query.product) {
+    result = await store.findById(Id);
+  }
 
   const payerId = req.query.PayerID;
   const paymentId = req.query.paymentId;
@@ -93,8 +97,8 @@ app.get("/success_backend/:id", async (req, res) => {
     transactions: [
       {
         amount: {
-          currency: "USD",
-          total: result.price.toString(),
+          currency: query.currency,
+          total: query.price.toString(),
         },
       },
     ],
@@ -107,22 +111,30 @@ app.get("/success_backend/:id", async (req, res) => {
       if (error) {
         throw error;
       } else {
-        let quantity = result.quantity - 1;
-        let updated = await store.findByIdAndUpdate(Id , { quantity });
-        console.log(updated)
-         res.redirect(301,`http://16.171.254.234:5000/success`)
+        if (query.product) {
+          let quantity = result.quantity - 1;
+          let updated = await store.findByIdAndUpdate(Id, { quantity });
+          console.log(updated);
+        }
+        if (query.music) {
+          let userDetail = await user.findByIdAndUpdate(query.userID, {
+            $push: { myMusic: { music_item: Id } },
+          });
+          
+        }
+        res.redirect(301, `http://16.171.254.234:5000/success`);
       }
     }
   );
 });
-app.get("/cancel_backend/:id", (req, res) =>  res.redirect(301,`http://16.171.254.234:5000/decline`));
+app.get("/cancel_backend/:id", (req, res) =>
+  res.redirect(301, `http://16.171.254.234:5000/decline`)
+);
 
-app.use(express.static('./build'))
+app.use(express.static("./build"));
 
-app.use('*', (req, res) => {
-
-    res.sendfile('./build/index.html');
-
+app.use("*", (req, res) => {
+  res.sendfile("./build/index.html");
 });
 
 app.listen(process.env.PORT, () => {
