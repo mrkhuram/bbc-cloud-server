@@ -146,7 +146,7 @@ class MusicController {
           payment_method: "paypal",
         },
         redirect_urls: {
-          return_url: `http://localhost:5000/success_backend/${result._id}?price=${result.price}&music=yes&currency=USD&userID=${req.params.userID}`,
+          return_url: `http://16.171.254.234:5000/success_backend/${result._id}?price=${result.price}&music=yes&currency=USD&userID=${req.params.userID}`,
           cancel_url: "http://16.171.254.234:5000/cancel_backend/" + result._id,
         },
         transactions: [   
