@@ -1,5 +1,6 @@
 const SplitAudio = require("../config/mp3Cutter");
 let Music = require("../model/music");
+let User = require("../model/user");
 let paypal = require("../config/paypal");
 
 class MusicController {
@@ -137,7 +138,11 @@ class MusicController {
   BuyMusic = async (req, res) => {
     try {
       let musicId = req.params.id;
-
+      let isBought = await User.findOne({ _id: req.params.userID, 'myMusic.music_item': musicId });
+      
+      if(isBought){
+        res.redirect(301, `http://16.171.254.234:5000/music`);
+      }
       let result = await Music.findById({ _id: musicId });
 
       const create_payment_json = {

@@ -88,7 +88,7 @@ class AuthController {
 
         // Check user if already exist
         let user = await User.findOne({ _id: userID }).populate("myMusic.music_item");
-
+        console.log(user)
         return res.status(200).send({ success: true, user });
               
     } catch (error) {
