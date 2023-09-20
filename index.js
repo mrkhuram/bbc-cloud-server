@@ -25,6 +25,9 @@ app.use("/api", require("./routes/videos"));
 app.use("/api", require("./routes/music"));
 app.use("/api", require("./routes/store"));
 app.use("/api", require("./routes/album"));
+app.get("/api/running",(req,res)=>{
+  res.send("server runing on 5000")
+})
 
 app.get("/api/pay/:id", async (req, res) => {
   let Id = req.params.id;
