@@ -41,8 +41,8 @@ app.get("/api/pay/:id", async (req, res) => {
       payment_method: "paypal",
     },
     redirect_urls: {
-      return_url: `http://16.171.254.234:5000/success_backend/${result._id}?price=${result.price}&product=yes&currency=USD`,
-      cancel_url: "http://16.171.254.234:5000/cancel_backend/" + result._id,
+      return_url: `http://162.240.149.96:5000//success_backend/${result._id}?price=${result.price}&product=yes&currency=USD`,
+      cancel_url: "http://162.240.149.96:5000//cancel_backend/" + result._id,
     },
     transactions: [
       {
@@ -122,13 +122,13 @@ app.get("/success_backend/:id", async (req, res) => {
           });
           
         }
-        res.redirect(301, `http://16.171.254.234:5000/success`);
+        res.redirect(301, `http://162.240.149.96:3000//success`);
       }
     }
   );
 });
 app.get("/cancel_backend/:id", (req, res) =>
-  res.redirect(301, `http://16.171.254.234:5000/decline`)
+  res.redirect(301, `http://162.240.149.96:3000//decline`)
 );
 
 app.use(express.static("./build"));

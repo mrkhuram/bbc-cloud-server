@@ -141,7 +141,7 @@ class MusicController {
       let isBought = await User.findOne({ _id: req.params.userID, 'myMusic.music_item': musicId });
       
       if(isBought){
-        res.redirect(301, `http://16.171.254.234:5000/music`);
+        res.redirect(301, `http://162.240.149.96:3000//music`);
       }
       let result = await Music.findById({ _id: musicId });
 
@@ -151,8 +151,8 @@ class MusicController {
           payment_method: "paypal",
         },
         redirect_urls: {
-          return_url: `http://16.171.254.234:5000/success_backend/${result._id}?price=${result.price}&music=yes&currency=USD&userID=${req.params.userID}`,
-          cancel_url: "http://16.171.254.234:5000/cancel_backend/" + result._id,
+          return_url: `http://162.240.149.96:5000//success_backend/${result._id}?price=${result.price}&music=yes&currency=USD&userID=${req.params.userID}`,
+          cancel_url: "http://162.240.149.96:5000//cancel_backend/" + result._id,
         },
         transactions: [   
           {
